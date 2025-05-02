@@ -2,6 +2,7 @@ library(shiny)
 library(ggplot2)
 library(bslib)
 library(dplyr)
+library(RCurl)
 library(lubridate)
 library(leaflet)
 library(leaflet.extras)
@@ -11,12 +12,23 @@ library(viridis)
 
 setwd('C:/Users/retai/Documents/r_projects/uber')
 
-apr_data <- read.csv("data/uber-raw-data-apr14.csv")
-may_data <- read.csv("data/uber-raw-data-may14.csv")
-jun_data <- read.csv("data/uber-raw-data-jun14.csv")
-jul_data <- read.csv("data/uber-raw-data-jul14.csv")
-aug_data <- read.csv("data/uber-raw-data-aug14.csv")
-sep_data <- read.csv("data/uber-raw-data-sep14.csv")
+apr_url <- getURL("https://raw.githubusercontent.com/retflipper/DATA332_Uber/refs/heads/main/data/uber-raw-data-apr14.csv")
+apr_data <- read.csv(text = apr_url)
+
+may_url <- getURL("https://raw.githubusercontent.com/retflipper/DATA332_Uber/refs/heads/main/data/uber-raw-data-may14.csv")
+may_data <- read.csv(text = may_url)
+
+jun_url <- getURL("https://raw.githubusercontent.com/retflipper/DATA332_Uber/refs/heads/main/data/uber-raw-data-jun14.csv")
+jun_data <- read.csv(text = jun_url)
+
+jul_url <- getURL("https://raw.githubusercontent.com/retflipper/DATA332_Uber/refs/heads/main/data/uber-raw-data-jul14.csv")
+jul_data <- read.csv(text = jul_url)
+
+aug_url <- getURL("https://raw.githubusercontent.com/retflipper/DATA332_Uber/refs/heads/main/data/uber-raw-data-aug14.csv")
+aug_data <- read.csv(text = aug_url)
+
+sep_url <- getURL("https://raw.githubusercontent.com/retflipper/DATA332_Uber/refs/heads/main/data/uber-raw-data-sep14.csv")
+sep_data <- read.csv(text = sep_url)
 
 uber_data <- full_join(apr_data, may_data)
 uber_data <- full_join(uber_data, jun_data)
